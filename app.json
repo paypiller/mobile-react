@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "PayPiller Vendor",
+    "slug": "paypiller-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "scheme": "paypiller",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0A0E1A"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.paypiller.vendor"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0A0E1A"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "package": "com.paypiller.vendor"
+    },
+    "platforms": ["ios", "android"],
+    "plugins": [
+      "expo-router",
+      "expo-secure-store"
+    ]
+  }
+}
