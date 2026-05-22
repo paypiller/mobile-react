@@ -199,3 +199,59 @@ export interface VendorsResponse {
   page: number;
   limit: number;
 }
+
+/** Permissions list */
+export type Permission =
+  | 'manage_units'
+  | 'manage_tenants'
+  | 'manage_staff'
+  | 'manage_property'
+  | 'view_property'
+  | 'manage_pricing'
+  | 'collect_rent';
+
+/** Matches backend permission_presets table */
+export interface PermissionPreset {
+  id: number;
+  name: string;
+  permissions: Permission[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+/** Matches backend property_roles table */
+export interface PropertyRole {
+  id: number;
+  name: string;
+  roleId: number | null; // links to global roles table for system roles, null for custom roles
+  vendorId: number | null; // null for system roles, set for custom vendor roles
+  permissionPresetId: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+/** Matches backend vendor_team table */
+export interface VendorTeamMember {
+  id: number;
+  vendorRoleId: number;
+  name: string;
+  phone: string;
+  roleId: number; // default property role for this staff member
+  status: 'pending' | 'active' | 'inactive';
+  createdAt: string;
+  updatedAt: string;
+}
+
+/** Matches backend property_team_members table */
+export interface PropertyTeamMember {
+  id: number;
+  propertyId: number;
+  teamMemberId: number; // links to vendor_team
+  overrideRoleId: number | null; // property-level role override
+  addPermissions: Permission[];
+  subtractPermissions: Permission[];
+  status: 'pending' | 'active' | 'inactive';
+  joinedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
